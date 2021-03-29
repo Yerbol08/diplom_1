@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InfoActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textUser"
+            android:layout_margin="8dp"
+            android:textSize="20sp"
+
+            android:text="Список участников"/>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="17dp"
+            tools:layout_editor_absoluteY="81dp"
+            android:id="@+id/listView"
+            android:transcriptMode="alwaysScroll"
+            android:stackFromBottom="true"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Выйти из аккаунта"
+            android:id="@+id/btnLogout"
+            android:onClick="Logout"
+            android:layout_margin="16sp"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Очистить чат"
+            android:id="@+id/btnClear"
+            android:layout_margin="16sp"
+            android:onClick="MessageRemove"/>
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "198947769143",
+    "firebase_url": "https://diplomaenu-c4b0d-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "diplomaenu-c4b0d",
+    "storage_bucket": "diplomaenu-c4b0d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198947769143:android:63eb5811874086c96b68b2",
+        "android_client_info": {
+          "package_name": "kz.tengrilab.chatapp_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "198947769143-s2a8c2iorjsue84uk0dv9i6uf2gi435h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyzQQuCz67yoIInUMB3LTP2p5qaxwBuXs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "198947769143-s2a8c2iorjsue84uk0dv9i6uf2gi435h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198947769143:android:b45268454af416c36b68b2",
+        "android_client_info": {
+          "package_name": "kz.tengrilab.diplom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "198947769143-s2a8c2iorjsue84uk0dv9i6uf2gi435h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyzQQuCz67yoIInUMB3LTP2p5qaxwBuXs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "198947769143-s2a8c2iorjsue84uk0dv9i6uf2gi435h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
