@@ -11,22 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textUser"
-            android:layout_margin="8dp"
-            android:textSize="20sp"
-
-            android:text="Список участников"/>
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="17dp"
-            tools:layout_editor_absoluteY="81dp"
-            android:id="@+id/listView"
-            android:transcriptMode="alwaysScroll"
-            android:stackFromBottom="true"/>
 
         <Button
             android:layout_width="match_parent"
@@ -42,6 +26,26 @@
             android:id="@+id/btnClear"
             android:layout_margin="16sp"
             android:onClick="MessageRemove"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textUser"
+            android:layout_margin="8dp"
+            android:textSize="20sp"
+            android:layout_marginStart="16sp"
+
+            android:text="Список участников"/>
+        <ListView
+            android:id="@+id/ListView"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        </ListView>
+
     </LinearLayout>
 
 </ScrollView>

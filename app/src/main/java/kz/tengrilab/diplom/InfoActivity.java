@@ -3,14 +3,19 @@ package kz.tengrilab.diplom;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
+import com.firebase.ui.database.FirebaseListAdapter;
+import com.firebase.ui.database.FirebaseListOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,16 +31,15 @@ public class InfoActivity extends AppCompatActivity {
 
 
 
-
-
+    ListView listUsers;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
-        ListView listMessages = (ListView) findViewById(R.id.listView);
+        listUsers = (ListView) findViewById(R.id.ListView);
         ArrayList<String> userList = new ArrayList<String>();
 
-
+      //  displayChat();
         DatabaseReference databaseReference =  FirebaseDatabase.getInstance().getReference("users");
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -54,15 +58,15 @@ public class InfoActivity extends AppCompatActivity {
                 }
                 Log.d("MAin", userList.toString());
 
-              //  String[] stringArray = userList.toArray(new String[0]);
-                String[] stringArray ={ "Бразилия", "Аргентина", "Колумбия", "Чили", "Уругвай"};
+                String[] stringArray = userList.toArray(new String[0]);
+                //String[] stringArray ={ "Бразилия", "Аргентина", "Колумбия", "Чили", "Уругвай"};
 //                int len = removeDuplicateElements(stringArray, users.size());
-//                for (int i = 0; i < len; i++){
-//                    Log.d("List", stringArray[i]);
-//                }
-
-                ArrayAdapter<String> adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, stringArray);
-                listMessages.setAdapter(adapter);
+                for (int i = 0; i < stringArray.length; i++){
+                    Log.d("List", stringArray[i]);
+                }
+//
+                ArrayAdapter<String> adapter = new ArrayAdapter(getApplicationContext(), R.layout.layout_users, R.id.textView_users,  stringArray);
+                listUsers.setAdapter(adapter);
 
             }
 
@@ -112,5 +116,27 @@ public class InfoActivity extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    private FirebaseListAdapter<Users> adapter;
+    @SuppressLint("ResourceAsColor")
+    private void displayChat() {
+        myRef = FirebaseDatabase.getInstance().getReference("users");
+        FirebaseListOptions<Users> options = new FirebaseListOptions.Builder<Users>()
+                .setQuery(myRef, Users.class)
+                .setLayout(R.layout.layout_users)
+                .build();
+
+        adapter = new FirebaseListAdapter<Users>(options) {
+            @Override
+            protected void populateView(@NonNull View v, @NonNull Users model, int position) {
+                TextView textUsers;
+                textUsers = (TextView) v.findViewById(R.id.textUser);
+                textUsers.setText(model.getUsername());
+            }
+
+        };
+        adapter.startListening();
+        listUsers.setAdapter(adapter);
     }
 }
