@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -103,6 +104,7 @@ public class InfoActivity extends AppCompatActivity {
     public void MessageRemove(View view) {
         DatabaseReference databaseReference =  FirebaseDatabase.getInstance().getReference("message");
         databaseReference.removeValue();
+        Toast.makeText(getApplicationContext(), "Данные из чата удалены", Toast.LENGTH_SHORT).show();
     }
 
     public void Logout(View view){
@@ -112,6 +114,8 @@ public class InfoActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
 
                         Toast.makeText(getApplicationContext(), "Выход выполнен", Toast.LENGTH_SHORT).show();
+
+                        moveTaskToBack(true);
                         finish();
 
                     }

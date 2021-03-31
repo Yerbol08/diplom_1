@@ -55,12 +55,7 @@ public class MainActivity extends AppCompatActivity {
         listMessages = (ListView) findViewById(R.id.listView);
         send = (ImageButton) findViewById(R.id.send_btn);
         input = (EditText) findViewById(R.id.input);
-//
-//        DatabaseReference databaseReference =  FirebaseDatabase.getInstance().getReference("users");
-//        databaseReference.push().setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
-        //databaseReference.removeValue();
-//        DatabaseReference databaseReference =  FirebaseDatabase.getInstance().getReference();
-//        databaseReference.removeValue();
+
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             startActivityForResult(AuthUI.getInstance()
                     .createSignInIntentBuilder()

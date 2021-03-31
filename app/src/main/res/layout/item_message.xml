@@ -19,17 +19,17 @@
             android:id="@+id/tvUser"
             android:textSize="15sp"
             android:textStyle="bold"
+            android:layout_marginStart="16sp"
             android:textColor="@color/colorAccent"
             />
 
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:layout_marginStart="16sp"
             android:layout_height="wrap_content"
             android:id="@+id/tvTime"/>
     </LinearLayout>
-
-
 
     <TextView
         android:layout_width="wrap_content"
@@ -38,5 +38,6 @@
         android:layout_marginTop="15sp"
         android:textSize="20sp"
         android:textColor="@color/black"
+        android:layout_marginStart="16sp"
         android:background="@drawable/message"/>
 </LinearLayout>
