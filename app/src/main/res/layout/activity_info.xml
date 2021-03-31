@@ -12,13 +12,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <Button
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Выйти из аккаунта"
-            android:id="@+id/btnLogout"
-            android:onClick="Logout"
-            android:layout_margin="16sp"/>
+            android:textSize="20sp"
+            android:text="@string/app_name"
+            android:layout_margin="16dp"/>
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,6 +27,14 @@
             android:id="@+id/btnClear"
             android:layout_margin="16sp"
             android:onClick="MessageRemove"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Выйти из аккаунта"
+            android:id="@+id/btnLogout"
+            android:onClick="Logout"
+            android:layout_margin="16sp"/>
 
         <TextView
             android:layout_width="match_parent"

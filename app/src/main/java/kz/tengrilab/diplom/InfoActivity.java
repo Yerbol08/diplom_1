@@ -3,20 +3,16 @@ package kz.tengrilab.diplom;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Space;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.database.FirebaseListAdapter;
-import com.firebase.ui.database.FirebaseListOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,8 +26,6 @@ import java.util.ArrayList;
 
 public class InfoActivity extends AppCompatActivity {
 
-
-
     ListView listUsers;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +34,6 @@ public class InfoActivity extends AppCompatActivity {
         listUsers = (ListView) findViewById(R.id.ListView);
         ArrayList<String> userList = new ArrayList<String>();
 
-      //  displayChat();
         DatabaseReference databaseReference =  FirebaseDatabase.getInstance().getReference("users");
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -50,22 +43,14 @@ public class InfoActivity extends AppCompatActivity {
                     userList.add(dataSnapshot.getValue().toString());
                 }
                 String user = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-                Log.d("User", userList.toString());
-                if (userList.contains(user)){
-                    Log.d("Main2", "SSsasa");
-                }
-                else {
+
+                if (!userList.contains(user)){
                     databaseReference.push().setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
                 }
-                Log.d("MAin", userList.toString());
+
 
                 String[] stringArray = userList.toArray(new String[0]);
-                //String[] stringArray ={ "Бразилия", "Аргентина", "Колумбия", "Чили", "Уругвай"};
-//                int len = removeDuplicateElements(stringArray, users.size());
-                for (int i = 0; i < stringArray.length; i++){
-                    Log.d("List", stringArray[i]);
-                }
-//
+
                 ArrayAdapter<String> adapter = new ArrayAdapter(getApplicationContext(), R.layout.layout_users, R.id.textView_users,  stringArray);
                 listUsers.setAdapter(adapter);
 
@@ -78,27 +63,6 @@ public class InfoActivity extends AppCompatActivity {
         });
 
     }
-
-
-    public static int removeDuplicateElements(String arr[], int n){
-        if (n==0 || n==1){
-            return n;
-        }
-        String[] temp = new String[n];
-        int j = 0;
-        for (int i=0; i<n-1; i++){
-            if (arr[i] != arr[i+1]){
-                temp[j++] = arr[i];
-            }
-        }
-        temp[j++] = arr[n-1];
-        for (int i=0; i<j; i++){
-            arr[i] = temp[i];
-        }
-        return j;
-    }
-
-    private DatabaseReference myRef;
 
 
     public void MessageRemove(View view) {
@@ -117,30 +81,10 @@ public class InfoActivity extends AppCompatActivity {
 
                         moveTaskToBack(true);
                         finish();
+                        startActivity(new Intent(getApplicationContext(), SplashActivity.class));
 
                     }
                 });
     }
 
-    private FirebaseListAdapter<Users> adapter;
-    @SuppressLint("ResourceAsColor")
-    private void displayChat() {
-        myRef = FirebaseDatabase.getInstance().getReference("users");
-        FirebaseListOptions<Users> options = new FirebaseListOptions.Builder<Users>()
-                .setQuery(myRef, Users.class)
-                .setLayout(R.layout.layout_users)
-                .build();
-
-        adapter = new FirebaseListAdapter<Users>(options) {
-            @Override
-            protected void populateView(@NonNull View v, @NonNull Users model, int position) {
-                TextView textUsers;
-                textUsers = (TextView) v.findViewById(R.id.textUser);
-                textUsers.setText(model.getUsername());
-            }
-
-        };
-        adapter.startListening();
-        listUsers.setAdapter(adapter);
-    }
 }
