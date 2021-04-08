@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
                 if (message.equals("")) {
                     Toast.makeText(getApplicationContext(), "Input empty", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                     FirebaseDatabase.getInstance().getReference("message").push().setValue(new Message(message, FirebaseAuth.getInstance().getCurrentUser().getEmail()));
 
                     input.setText("");
@@ -131,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("ResourceAsColor")
             @Override
             protected void populateView(View v, Message model, int position) {
-
+                RelativeLayout relativeLayout = (RelativeLayout) v.findViewById(R.id.relative);
                 TextView textMessage, author, timeMessage, tvCipher;
                 textMessage = (TextView) v.findViewById(R.id.tvMessage);
                 author = (TextView) v.findViewById(R.id.tvUser);
@@ -139,7 +138,14 @@ public class MainActivity extends AppCompatActivity {
 
                 textMessage.setText(model.getTextMessage());
                 author.setText(model.getAutor());
-                timeMessage.setText(DateFormat.format("HH:mm:ss", model.getTimeMessage()));
+                timeMessage.setText(DateFormat.format("HH:mm yyyy.MM.dd", model.getTimeMessage()));
+                if (position % 2 == 0) {
+                    relativeLayout.setBackgroundColor(R.color.green);
+                    //  author.setTextColor(R.color.white);
+                }
+                else {
+                    relativeLayout.setBackgroundColor(R.color.white);
+                }
 
             }
         };
